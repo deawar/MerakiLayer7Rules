@@ -12,13 +12,24 @@ API_KEY = config["apiKey"]
 dashboard = meraki.DashboardAPI(API_KEY)
 network_id = config["networkId"]
 
+# Opening JSON file
+with open('newRules.json') as json_file:
+    newRules = json.load(json_file)
+
+    # Print the type of data variable
+    print("Type:", type(newRules))
+
+    # Print the data of dictionary
+    print("\nBlocked Countries:", newRules['rules'][3]['value'],"\n")
+    #print("\nPeople2:", data['people2'])
+
 response = dashboard.appliance.getNetworkApplianceFirewallL7FirewallRules(
     network_id
 )
 currentRules = response
 print("\nExisting rules: ", currentRules, "\n")
 # New rules to be created
-newRules = {'rules': [{'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/101', 'name': 'CBS Sports'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/40', 'name': 'ESPN'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/96', 'name': 'foxsports.com'}}]}
+#newRules = {'rules': [{'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/101', 'name': 'CBS Sports'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/40', 'name': 'ESPN'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/96', 'name': 'foxsports.com'}}]}
 
 # Append new rules to exiting rules
 updatedRules = currentRules.update(newRules)
