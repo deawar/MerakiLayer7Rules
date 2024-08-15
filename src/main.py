@@ -16,12 +16,13 @@ response = dashboard.appliance.getNetworkApplianceFirewallL7FirewallRules(
     network_id
 )
 currentRules = response
-
+print("\nExisting rules: ", currentRules, "\n")
 # New rules to be created
 newRules = {'rules': [{'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/101', 'name': 'CBS Sports'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/40', 'name': 'ESPN'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/96', 'name': 'foxsports.com'}}]}
 
 # Append new rules to exiting rules
-currentRules.update(newRules)
+updatedRules = currentRules.update(newRules)
+print("\nCombined rules: ", updatedRules, "\n")
 
 # Create the URL for retrieving all VLANs in the network
 url = f"https://api.meraki.com/api/v1/networks/{config['networkId']}/appliance/firewall/l7FirewallRules"
@@ -34,7 +35,7 @@ headers = {
 }
 print("url: ", url,headers)
 # Make the API request using the requests library
-response = requests.request("PUT", url, headers=headers, data=json.dumps(currentRules))
+response = requests.request("PUT", url, headers=headers, data=json.dumps(updatedRules))
 
 # Print the status code of the response
 print("\nRequest status code : ", str(response), "\n")
