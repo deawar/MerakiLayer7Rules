@@ -13,7 +13,7 @@ Example of python script to update the L7 firewall rules of a Meraki MX as follo
 ## Get started
 1. Clone or download this repo
 ```console
-git clone https://github.com/xaviervalette/meraki-update-l7-firewall-rules
+git clone https://github.com/deawar/MerakiLayer7Rules
 ```
 2. Install required packages
 ```console

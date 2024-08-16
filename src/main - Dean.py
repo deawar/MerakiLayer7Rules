@@ -7,6 +7,20 @@ import yaml
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
 
+# Pull credentials/NetworkId from YAML file
+# (networkId will need to be pulled from different part of API-maybe separate function in future)
+API_KEY = config["apiKey"]
+dashboard = meraki.DashboardAPI(API_KEY)
+network_id = config["networkId"]
+
+# Get existing rules from the target network and save to existingRules dictionary
+existing_rules = dashboard.appliance.getNetworkApplianceFirewallL7FirewallRules(
+    network_id
+)
+
+# For testing puropses-this print will be removed for production.
+print("\nExisting Rules downloaded: ", existing_rules)
+
 # Open JSON file and read in new rule attributes to push into layer 7 firewall ruleset
 with open('newRules.json') as json_file:
     file_contents = json.load(json_file)
@@ -14,12 +28,6 @@ with open('newRules.json') as json_file:
 print("newRules from file: ", file_contents)
 
 
-API_KEY = config["apiKey"]
-dashboard = meraki.DashboardAPI(API_KEY)
-network_id = config["networkId"]
-
-# response = dashboard.organizations.getOrganizations()
-# print("Allowed Networks: ",response)
 
 # New rules to be created JSON format
 newRules = file_contents
@@ -55,8 +63,6 @@ headers = {
 print ("\nurl: ",url,headers)
 
 # Make the API request using the requests library
-#response = requests.request("PUT", url, headers=headers, data=json.dumps(newRules))
-#response = requests.request("PUT", url, headers=headers, data = newRules)
 response = dashboard.appliance.updateNetworkApplianceFirewallL7FirewallRules(
    network_id, 
    rules = newRules

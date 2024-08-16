@@ -1,0 +1,189 @@
+{
+   "rules":
+    [
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "biter.de"
+        },        
+        {
+            "policy": "deny", 
+            "type": "host", 
+            "value": "b.itzer.de "
+        }, 
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "betzer.de"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"217.160.25.184"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"81.169.145.149"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"80.237.133.28"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"81.169.145.156"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"91.233.85.186"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"103.224.182.253"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"195.253.6.126"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"217.160.0.128"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"217.160.0.182"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"37.120.163.221"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"217.160.0.67"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"5.9.34.35"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"81.169.145.164"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"82.112.241.14"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"95.173.103.1"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"37.120.163.221"
+        },
+        {
+            "policy":"deny",
+            "type":"ipRange",
+            "value":"217.160.0.181"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "bitzero.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "bitzers.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "fitzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "ritzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "batzer.de"
+        }, 
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "ditzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "nbitzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "bizer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "itzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "butzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "hitzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "bizzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "bitter.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "vitzer.de"
+        },{
+            "policy": "deny",
+            "type": "host",
+            "value": "birzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "b.itzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "betzer.de"
+        }
+    ]
+}
