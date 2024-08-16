@@ -1,33 +1,22 @@
-{
-    "rules":[
-       {
-          "policy":"deny",
-          "type":"host",
-          "value":"clearli.nktech.com"
-       },
-       {
-          "policy":"deny",
-          "type":"ipRange",
-          "value":"217.160.25.184"
-       },
-       {
-          "policy":"deny",
-          "type":"applicationCategory",
-          "value":{
-             "id":"meraki:layer7/category/8",
-             "name":"Peer-to-peer (P2P)"
-          }
-       },
-       {
-          "policy":"deny",
-          "type":"blockedCountries",
-          "value":[
-             "AF",
-             "AM",
-             "CN",
-             "KP",
-             "RU"
-          ]
-       }
-    ]
- }
+[
+    {
+        "policy": "deny",
+        "type": "host",
+        "value": "biter.de"
+    },        
+    {
+        "policy": "deny", 
+        "type": "host", 
+        "value": "b.itzer.de "
+    }, 
+    {
+        "policy": "deny",
+        "type": "host",
+        "value": "betzer.de"
+    },
+    {
+        "policy": "deny",
+        "type": "host",
+        "value": "pornhub.com"
+    }
+]
