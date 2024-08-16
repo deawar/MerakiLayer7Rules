@@ -11,7 +11,7 @@ with open('config.yml', 'r') as file:
 with open('newRules.json') as json_file:
     file_contents = json.load(json_file)
 
-print("newRules: ", file_contents)
+print("newRules from file: ", file_contents)
 
 
 API_KEY = config["apiKey"]
