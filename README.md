@@ -5,6 +5,9 @@ Example of python script to update the L7 firewall rules of a Meraki MX as follo
 
 <img width="1035" alt="image" src="https://user-images.githubusercontent.com/28600326/225572877-8f3d26bc-fc8b-4a5f-b449-207677317f8e.png">
 
+## Source API
+All the api calls were created using the Meraki API V1 Index at https://developer.cisco.com/meraki/api-v1/api-index/
+
 ## Prerequisites
 - Meraki Dashboard access
 - Meraki API key

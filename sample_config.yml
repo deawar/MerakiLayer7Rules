@@ -1,0 +1,9 @@
+#config.yml
+---
+apiKey: "Your_API_Key"
+
+orgName: "CTS"
+networkId: "L_580401401977375891"
+
+#orgName: "Avenue Aesthetics"
+#networkId: "606297099834754852"
