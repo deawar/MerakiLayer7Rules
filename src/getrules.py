@@ -32,9 +32,7 @@ newRules = file_contents
 policies = newRules["rules"]
 print("\nnested policies for newRules: ",policies,"\n")
 existing_rules["rules"] += policies
-#new_rules = existing_rules["rules"].extend([{'policy': 'deny', 'type': 'ipRange', 'value': '217.160.0.181'}])
-#new_rules = newRules["rules"].extend(policies)
-# for key, value in newRules.items():
-#     new_rules[key] = value
+newRules = existing_rules
 
 print("\ncombined JSON to now push to FW: ",existing_rules,"\n")
+print("\ncombined JSON newRules to now push to FW: ",newRules,"\n")
