@@ -1,22 +1,24 @@
-[
-    {
-        "policy": "deny",
-        "type": "host",
-        "value": "biter.de"
-    },        
-    {
-        "policy": "deny", 
-        "type": "host", 
-        "value": "b.itzer.de "
-    }, 
-    {
-        "policy": "deny",
-        "type": "host",
-        "value": "betzer.de"
-    },
-    {
-        "policy": "deny",
-        "type": "host",
-        "value": "pornhub.com"
-    }
-]
+{
+    "rules":[
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "biter.de"
+        },        
+        {
+            "policy": "deny", 
+            "type": "host", 
+            "value": "b.itzer.de "
+        }, 
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "betzer.de"
+        },
+        {
+            "policy": "deny",
+            "type": "host",
+            "value": "pornhub.com"
+        }
+    ]
+}

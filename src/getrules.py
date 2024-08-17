@@ -29,8 +29,12 @@ print("\nnewRules from file: ", file_contents,"\n")
 newRules = file_contents
 
 # Combine existing_rules and newRules dict int to new_rules.
-new_rules = existing_rules.copy()
-for key, value in newRules.items():
-    new_rules[key] = value
+policies = newRules["rules"]
+print("\nnested policies for newRules: ",policies,"\n")
+existing_rules["rules"] += policies
+#new_rules = existing_rules["rules"].extend([{'policy': 'deny', 'type': 'ipRange', 'value': '217.160.0.181'}])
+#new_rules = newRules["rules"].extend(policies)
+# for key, value in newRules.items():
+#     new_rules[key] = value
 
-print("\ncombined JSON to now push to FW: ",new_rules,"\n")
+print("\ncombined JSON to now push to FW: ",existing_rules,"\n")
