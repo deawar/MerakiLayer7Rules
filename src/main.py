@@ -25,8 +25,12 @@ existing_rules = dashboard.appliance.getNetworkApplianceFirewallL7FirewallRules(
 # For testing puropses-this print will be removed for production.
 print("\nExisting Rules downloaded: ", existing_rules)
 
+# Asking user for File name for rules
+filename = input("Enter the filename: ")
+
 # Open JSON file and read in new rule attributes to push into layer 7 firewall ruleset
-with open('newRules.json') as json_file:
+with open(filename) as json_file:
+#with open('newRules.json') as json_file:
     file_contents = json.load(json_file)
 
 # For testing puropses-this print will be removed for production.
