@@ -28,7 +28,7 @@ git clone https://github.com/deawar/MerakiLayer7Rules
 ```console
 python3 -m pip install -r requirements.txt
 ```
-3. Rename sample.env and edit ```.env``` file as follow:
+3. Rename sample_config.env and edit ```.env``` file as follow:
 ```diff
 └── meraki-update-l7-firewall-rules/
 +   ├── .env
