@@ -28,20 +28,20 @@ git clone https://github.com/deawar/MerakiLayer7Rules
 ```console
 python3 -m pip install -r requirements.txt
 ```
-3. Rename sample_config.yml and edit ```config.yml``` file as follow:
+3. Rename sample.env and edit ```.env``` file as follow:
 ```diff
 └── meraki-update-l7-firewall-rules/
-+   ├── config.yml
++   ├── .env
     ├── requirements.txt
     └── src/
          └── main.py  
 ```
-4. In the ```config.yml``` file, add the following variables:
-```yaml
-#config.yml
+4. In the ```.env``` file, add the following variables:
+```environment
+#.env
 ---
-apiKey: "<yourApiKey>"
-networkId: "<yourNetworkId1>"
+apiKey = "<yourApiKey>"
+networkId = "<yourNetworkId>"
 ...
 
 ```

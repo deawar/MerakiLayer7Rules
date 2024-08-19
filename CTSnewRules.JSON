@@ -39,6 +39,11 @@
         "policy": "deny",
         "type": "host",
         "value": "cl.earlinkteck.com"
+      },
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "clearlink.tech.com"
       }
 
     ]
