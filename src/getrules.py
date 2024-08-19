@@ -1,14 +1,16 @@
 import meraki
 import json
-import yaml
+import os
+from dotenv import load_dotenv
 
-# Open the config.yml file and load its contents into the 'config' variable
-with open('config.yml', 'r') as file:
-    config = yaml.safe_load(file)
+load_dotenv()
 
-API_KEY = config["apiKey"]
+# Open the .env file and pull credentials
+
+API_KEY = os.getenv("apiKey")
 dashboard = meraki.DashboardAPI(API_KEY)
-network_id = config["networkId"]
+network_id = os.getenv("networkId")
+
 existing_rules = {}
 
 # Get existing rules from the target network and save to existingRules dictionary
@@ -28,11 +30,27 @@ print("\nnewRules from file: ", file_contents,"\n")
 # New rules to be created JSON format
 newRules = file_contents
 
-# Combine existing_rules and newRules dict int to new_rules.
-policies = newRules["rules"]
-print("\nnested policies for newRules: ",policies,"\n")
-existing_rules["rules"] += policies
-newRules = existing_rules
+# Function to combine nested dictionaries with lists and eliminate duplicate entries.
+def combine_rules(existing_rules, new_rules):
+    # Convert the list of rules into a set of tuples to easily identify duplicates
+    existing_set = { (rule['policy'], rule['type'], tuple(rule['value']) if isinstance(rule['value'], list) else rule['value']) for rule in existing_rules['rules'] }
+    new_set = { (rule['policy'], rule['type'], tuple(rule['value']) if isinstance(rule['value'], list) else rule['value']) for rule in new_rules['rules'] }
 
-print("\ncombined JSON to now push to FW: ",existing_rules,"\n")
-print("\ncombined JSON newRules to now push to FW: ",newRules,"\n")
+    # Combine the two sets
+    combined_set = existing_set.union(new_set)
+
+    # Convert the set back to the original dictionary format
+    combined_rules = {'rules': []}
+    for rule in combined_set:
+        combined_rules['rules'].append({
+            'policy': rule[0],
+            'type': rule[1],
+            'value': list(rule[2]) if isinstance(rule[2], tuple) else rule[2]
+        })
+
+    return combined_rules
+
+# Combine existing_rules and newRules dict int to new_rules.
+combined_rules = combine_rules(existing_rules, newRules)
+
+print("\ncombined JSON newRules to now push to FW: ",combined_rules,"\n")

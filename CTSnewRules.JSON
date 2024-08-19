@@ -29,6 +29,17 @@
         "policy": "deny",
         "type": "host",
         "value": "cl.earlinktech.com"
+      },
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "cl.earlintech.com"
+      },
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "cl.earlinkteck.com"
       }
+
     ]
   }
