@@ -86,4 +86,4 @@ response = dashboard.appliance.updateNetworkApplianceFirewallL7FirewallRules(
 )
 
 # Print the response
-print("\nRequest status of code : ", str(response), "\n")
+print("\nResulting ruleset: ", str(response), "\n")
