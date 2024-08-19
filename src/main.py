@@ -39,11 +39,19 @@ print("\nnewRules from file: ", file_contents,"\n")
 # New rules to be created JSON format
 newRules = file_contents
 
+def normalize_value(value):
+    """Helper function to normalize the 'value' field for consistent comparison."""
+    if isinstance(value, list):
+        return tuple(sorted(value))  # Sort and convert lists to tuples for comparison
+    elif isinstance(value, dict):
+        return json.dumps(value, sort_keys=True)  # Convert dicts to JSON strings for comparison
+    return value
+
 # Function to combine nested dictionaries with lists and eliminate duplicate entries.
 def combine_rules(existing_rules, new_rules):
     # Convert the list of rules into a set of tuples to easily identify duplicates
-    existing_set = { (rule['policy'], rule['type'], tuple(rule['value']) if isinstance(rule['value'], list) else rule['value']) for rule in existing_rules['rules'] }
-    new_set = { (rule['policy'], rule['type'], tuple(rule['value']) if isinstance(rule['value'], list) else rule['value']) for rule in new_rules['rules'] }
+    existing_set = { (rule['policy'], rule['type'], normalize_value(rule['value'])) for rule in existing_rules['rules'] }
+    new_set = { (rule['policy'], rule['type'], normalize_value(rule['value'])) for rule in new_rules['rules'] }
 
     # Combine the two sets
     combined_set = existing_set.union(new_set)
@@ -51,10 +59,16 @@ def combine_rules(existing_rules, new_rules):
     # Convert the set back to the original dictionary format
     combined_rules = {'rules': []}
     for rule in combined_set:
+        normalized_value = rule[2]
+        if isinstance(normalized_value, str) and normalized_value.startswith('{'):
+            normalized_value = json.loads(normalized_value)  # Convert JSON string back to dict
+        elif isinstance(normalized_value, tuple):
+            normalized_value = list(normalized_value)  # Convert tuple back to list
+        
         combined_rules['rules'].append({
             'policy': rule[0],
             'type': rule[1],
-            'value': list(rule[2]) if isinstance(rule[2], tuple) else rule[2]
+            'value': normalized_value
         })
 
     return combined_rules
