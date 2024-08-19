@@ -1,24 +1,56 @@
 {
-    "rules":[
-        {
-            "policy": "deny",
-            "type": "host",
-            "value": "biter.de"
-        },        
-        {
-            "policy": "deny", 
-            "type": "host", 
-            "value": "b.itzer.de "
-        }, 
-        {
-            "policy": "deny",
-            "type": "host",
-            "value": "betzer.de"
-        },
-        {
-            "policy": "deny",
-            "type": "host",
-            "value": "pornhub.com"
+    "rules": [
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "clearli.nktech.com"
+      },
+      {
+        "policy": "deny",
+        "type": "blockedCountries",
+        "value": [
+          "AF",
+          "AM",
+          "CN",
+          "IR",
+          "KZ",
+          "RU",
+          "TJ",
+          "TM",
+          "UZ"
+        ]
+      },
+      {
+        "policy": "deny",
+        "type": "ipRange",
+        "value": "217.160.0.181"
+      },
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "cl.earlinktech.com"
+      },
+      {
+        "policy": "deny",
+        "type": "applicationCategory",
+        "value": {
+          "id": "meraki:layer7/category/8",
+          "name": "Peer-to-peer (P2P)"
         }
+      },
+      {
+        "policy": "deny", 
+        "type": "ipRange", 
+        "value": "5.9.34.35"
+      },
+      {
+        "policy": "deny", 
+        "type": "application", 
+        "value": {
+            "id": "meraki:layer7/application/110", 
+            "name": "BitTorrent"
+            }
+      }
+
     ]
-}
+  }
