@@ -54,8 +54,7 @@ python3 src/main.py
 ## Output
 The output should be as followed:
 ```console
-Request status code : 200 
-
+Resulting ruleset:
 {'rules': [{'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/101', 'name': 'CBS Sports'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/40', 'name': 'ESPN'}}, {'policy': 'deny', 'type': 'application', 'value': {'id': 'meraki:layer7/application/96', 'name': 'foxsports.com'}}]}
 ```
 
