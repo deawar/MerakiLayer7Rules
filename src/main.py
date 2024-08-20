@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# This script is based off the MEraki API documentation and the Github of Xavier VALETTE (xvalette)
+# This script is based off the Meraki API documentation and the Github of Xavier VALETTE (xvalette)
 # at https://github.com/xaviervalette/meraki-update-l7-firewall-rules.
 # Author: Dean Warren with contributions from Jacob Warren.
 # Created: 8/17/2024
