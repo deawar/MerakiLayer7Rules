@@ -1,3 +1,35 @@
+readMe = '''This is a script to print out to the console a current list of Layer 7 Firewall rules in an organization. 
+ It takes a json file and will combine the existing rules with the new ruleset. If there are duplicates it will only
+ add new rules. No output will be saved or rules pushed back to the Firewall from this script.
+
+Usage:
+ python getrules.py [<newRules.json>]
+ 
+ The .env file will need to be populated with your Meraki Dashboard API key and a NetworkId that looks like "N_0000000000000" 
+ or "L_0000000000000" of the network firewall you wish to interrogate.
+
+Parameters:
+  <new rules file>      :   Required to complete the script. Your Meraki Dashboard API key will. If omitted, the script will look for a key in
+                            OS environment variable "MERAKI_DASHBOARD_API_KEY"
+  -o <org name>         :   Optional. Name of the organization you want to process. Use keyword "/all" to explicitly
+                            specify all orgs. Default is "/all"
+  -h                    :   Help option that opens this ReadMe.      
+
+Example:
+  python orgclientcsv.py "newRules.json" -o "Big Industries Inc" 
+
+Notes:
+ * In Windows, use double quotes ("") to enter command line parameters containing spaces.
+ * This script was built for Python 3.7.1.
+ * Depending on your operating system, the command to start python can be either "python" or "python3". 
+
+Required Python modules:
+  Requests     : http://docs.python-requests.org
+After installing Python, you can install these additional modules using pip with the following commands:
+  pip install requests
+
+Depending on your operating system, the command can be "pip3" instead of "pip".'''
+
 import meraki
 import json
 import os
@@ -6,10 +38,32 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Open the .env file and pull credentials
-
 API_KEY = os.getenv("apiKey")
 dashboard = meraki.DashboardAPI(API_KEY)
 network_id = os.getenv("networkId")
+org_list = os.getenv("orgList")
+
+# Option Function
+def killScript(reason=None):
+    if reason is None:
+        print(readMe)
+        sys.exit()
+    else:
+        log("ERROR: %s" % reason)
+        sys.exit()
+        
+# Print Help File
+def printhelp():
+    print(readMe) 
+    
+# Pull the orgId by using the orgName
+	# Search for the org
+def get_org_name(orgs, orgName):
+    orgs = meraki.organizations.get_organizations()
+    for org in orgs:
+        if org['name'] == orgName:
+            orgId=org['id']
+            break;
 
 existing_rules = {}
 
@@ -67,4 +121,4 @@ def combine_rules(existing_rules, new_rules):
 # Combine existing_rules and newRules dict int to new_rules.
 combined_rules = combine_rules(existing_rules, newRules)
 
-print("\ncombined JSON newRules to now push to FW: ",combined_rules,"\n")
+print("\nCombined JSON newRules to now push to FW: ",combined_rules,"\n")

@@ -2,11 +2,6 @@
     "rules": [
       {
         "policy": "deny",
-        "type": "host",
-        "value": "clearli.nktech.com"
-      },
-      {
-        "policy": "deny",
         "type": "blockedCountries",
         "value": [
           "AF",
@@ -24,11 +19,6 @@
         "policy": "deny",
         "type": "ipRange",
         "value": "217.160.0.181"
-      },
-      {
-        "policy": "deny",
-        "type": "host",
-        "value": "cl.earlinktech.com"
       },
       {
         "policy": "deny",
