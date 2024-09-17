@@ -3,14 +3,18 @@ readMe = '''This is a script to print out to the console a current list of Layer
  add new rules. No output will be saved or rules pushed back to the Firewall from this script.
 
 Usage:
- python getrules.py [<newRules.json>]
+ python getrules.py -k [<api key>] -o [<org name>] [<newRules.json>] -h [opens helpfile]
  
+ **Note anything in [] is optional if supplied in the .env file
+
  The .env file will need to be populated with your Meraki Dashboard API key and a NetworkId that looks like "N_0000000000000" 
  or "L_0000000000000" of the network firewall you wish to interrogate.
 
 Parameters:
-  <new rules file>      :   Required to complete the script. Your Meraki Dashboard API key will. If omitted, the script will look for a key in
-                            OS environment variable "MERAKI_DASHBOARD_API_KEY"
+  <new rules file>.json :   JSON file required to add new rules to the firewall.
+  -k <api key>          :   Your Meraki Dashboard API key. Requires org-level privilege. If omitted, script
+                            looks for an API key in OS environment variable "meraki.DashboardAPI" 
+                            OS environment variable "meraki.DashboardAPI"
   -o <org name>         :   Optional. Name of the organization you want to process. Use keyword "/all" to explicitly
                             specify all orgs. Default is "/all"
   -h                    :   Help option that opens this ReadMe.      
@@ -32,16 +36,10 @@ Depending on your operating system, the command can be "pip3" instead of "pip".'
 
 import meraki
 import json
-import os
+import os, sys, getopt, time, datetime
 from dotenv import load_dotenv
 
 load_dotenv()
-
-# Open the .env file and pull credentials
-API_KEY = os.getenv("apiKey")
-dashboard = meraki.DashboardAPI(API_KEY)
-network_id = os.getenv("networkId")
-org_list = os.getenv("orgList")
 
 # Option Function
 def killScript(reason=None):
@@ -55,7 +53,26 @@ def killScript(reason=None):
 # Print Help File
 def printhelp():
     print(readMe) 
-    
+
+# Open the .env file and pull credentials
+API_KEY = os.getenv("apiKey")
+if API_KEY is None:
+    killScript()
+dashboard = meraki.DashboardAPI(API_KEY)
+network_id = os.getenv("networkId")
+org_list = os.getenv("orgList")
+
+# Generate logfile if errors
+def log(text, filePath=None):
+    logString = "%s -- %s" % (str(datetime.datetime.now())[:19], text)
+    print(logString)
+    if not filePath is None:
+        try:
+            with open(filePath, "a") as logFile:
+                logFile.write("%s\n" % logString)
+        except:
+            log("ERROR: Unable to append to log file")
+   
 # Pull the orgId by using the orgName
 	# Search for the org
 def get_org_name(orgs, orgName):
@@ -79,7 +96,7 @@ print("\nExisting Rules downloaded: ", existing_rules,"\n")
 with open('newRules.json') as json_file:
     file_contents = json.load(json_file)
 
-print("\nnewRules from file: ", file_contents,"\n")
+print("\nNewRules from file: ", file_contents,"\n")
 
 # New rules to be created JSON format
 newRules = file_contents
