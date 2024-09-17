@@ -47,6 +47,7 @@ def killScript(reason=None):
         print(readMe)
         sys.exit()
     else:
+        print("ERROR: %s" % reason)
         log("ERROR: %s" % reason)
         sys.exit()
         
