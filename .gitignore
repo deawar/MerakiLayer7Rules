@@ -12,3 +12,4 @@ node_modules
 
 # Ignore Meraki API log files so they don't get added to the repo
 *.log
+src/compare_orgs.py
