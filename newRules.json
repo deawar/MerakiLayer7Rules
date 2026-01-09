@@ -40,7 +40,26 @@
             "id": "meraki:layer7/application/110", 
             "name": "BitTorrent"
             }
+      },
+      {
+        "policy": "deny",
+        "type": "ipRange",
+        "value": "95.217.222.57"
+      },
+      {
+        "policy": "deny",
+        "type": "ipRange",
+        "value": "65.108.222.214"
+      },
+      {
+        "policy": "deny",
+        "type": "ipRange",
+        "value": "37.27.180.132"
+      },
+      {
+        "policy": "deny",
+        "type": "host",
+        "value": "hetzner.com"
       }
-
     ]
   }
